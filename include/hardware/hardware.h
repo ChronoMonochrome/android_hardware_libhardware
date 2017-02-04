@@ -223,7 +223,7 @@ int hw_get_module(const char *id, const struct hw_module_t **module);
  *
  * @return: 0 == success, <0 == error and *module == NULL
  */
-int hw_get_module_by_path(const char *path,
+void * hw_get_module_by_path(const char *path,
                            const struct hw_module_t **module);
 
 /**

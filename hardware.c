@@ -127,9 +127,9 @@ static int load(const char *id,
 /**
  * Load the file and if successful
  * return the dlopen handle and the hmi.
- * @return 0 = success, !0 = failure.
+ * @return handle = success, NULL = failure.
  */
-static int load_simple(const char *path,
+static void *load_simple(const char *path,
         const struct hw_module_t **pHmi)
 {
     int status = -EINVAL;
@@ -186,7 +186,7 @@ static int load_simple(const char *path,
 
     *pHmi = hmi;
 
-    return status;
+    return handle;
 }
 
 /*
@@ -214,7 +214,7 @@ static int hw_module_exists(char *path, size_t path_len, const char *name,
     return -ENOENT;
 }
 
-int hw_get_module_by_path(const char *path,
+void *hw_get_module_by_path(const char *path,
                            const struct hw_module_t **module)
 {
     return load_simple(path, module);
